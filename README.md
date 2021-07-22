@@ -12,7 +12,18 @@ First clone this repository
 git clone https://github.com/julie-ng/azure-image-builder-test
 ```
 
-### Option 1 - Bicep
+### Option 1 - Azure CLI per Official Docs
+
+1. Requirement - Visual Studio Code with [Azure CLI Tools Extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode.azurecli) installed.
+2. Open the [`image-builder.azcli`](./image-builder.azcli) file
+3. Run each command line by line…
+
+Alternatively without Visual CLI Tools: confirm the feature is enabled and then copy Parts 1-8 into a `.sh` file and run that file.
+
+
+### Option 2 - Bicep
+
+The multitude of shell commands in the official docs is just nasty.  In my opinion, this would be better as Infrastructure as Code (IaC). I tried 🤷‍♀️, but no luck.
 
 First create a resource group, optionally replacing `westeurope` with a region of your preference.
 
@@ -26,7 +37,7 @@ Then try the Bicep Infrastructure as Code example
 az deployment group create -f ./image-builder.bicep -g azure-image-builder-rg
 ```
 
-### Errors
+## Errors and Frustrations 😫🤬
 
 Maybe you will have better luck than me, but I had the following problems:
 
@@ -43,17 +54,21 @@ Example Errors
 {"status":"Failed","error":{"code":"DeploymentFailed","message":"At least one resource deployment operation failed. Please list deployment operations for details. Please see https://aka.ms/DeployOperations for usage details.","details":[{"code":"Conflict","message":"{\r\n  \"code\": \"Conflict\",\r\n  \"message\": \"Update/Upgrade of image templates is currently not supported. Please change the name of the template you are submitting. If you have previously tried to submit a template and it failed to provision, you must delete it first and then resubmit. For more information, go to https://aka.ms/azvmimagebuilderts.\"\r\n}"},{"code":"BadRequest","message":"{\r\n  \"error\": {\r\n    \"code\": \"RoleAssignmentUpdateNotPermitted\",\r\n    \"message\": \"Tenant ID, application ID, principal ID, and scope are not allowed to be updated.\"\r\n  }\r\n}"}]}}
 ```
 
-### Option 2 - Azure CLI
+### Why are the error outputs not formatted?
 
-1. Requirement - Visual Studio Code with [Azure CLI Tools Extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode.azurecli) installed.
-2. Open the [`image-builder.azcli`](./image-builder.azcli) file
-3. Run each command line by line…
+I thought about throwing the commands into a node.js file just so I can format the output for easier debugging. 
 
-Alternatively without Visual CLI Tools: confirm the feature is enabled and then copy Parts 1-8 into a `.sh` file and run that file.
+But this is not possible because of the nested JSON output. For example `JSON.parse()` chokes on the `message:` key because it contains more JSON as string.
+
+```
+"message": "{\r\n  \"code\": \"Conflict\",\r\n  \"message\": \"Update/Upgrade of image templates is currently not supported. Please change the name of the template you are submitting. If you have previously tried to submit a template and it failed to provision, you must delete it first and then resubmit. For more information, go to https://aka.ms/azvmimagebuilderts.\"\r\n}"
+```
+
+After trying to grab the nested bits via regular expressions and to parse first, I gave up. 
 
 ## Use Case
 
-Customer has multiple workloads, including containers in Kubernetes. Certain components however must run in custom Virtual images.
+Why did I even try this? Image a customer has multiple workloads, including containers in Kubernetes. Certain components however must run in custom Virtual images.
 
 #### Challenge - VHDs will be deprecated
 
