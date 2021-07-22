@@ -14,7 +14,13 @@ git clone https://github.com/julie-ng/azure-image-builder-test
 
 ### Option 1 - Bicep
 
-Try the Bicep Infrastructure as Code example
+First create a resource group, optionally replacing `westeurope` with a region of your preference.
+
+```bash
+az group create --name azure-image-builder-rg --location westeurope
+```
+
+Then try the Bicep Infrastructure as Code example
 
 ```bash
 az deployment group create -f ./image-builder.bicep -g azure-image-builder-rg
