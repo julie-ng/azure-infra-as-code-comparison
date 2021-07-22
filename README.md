@@ -46,13 +46,11 @@ Maybe you will have better luck than me, but I had the following problems:
   
 Example Errors
 
-```
-{"status":"Failed","error":{"code":"DeploymentFailed","message":"At least one resource deployment operation failed. Please list deployment operations for details. Please see https://aka.ms/DeployOperations for usage details.","details":[{"code":"Conflict","message":"{\r\n  \"code\": \"Conflict\",\r\n  \"message\": \"Update/Upgrade of image templates is currently not supported. Please change the name of the template you are submitting. If you have previously tried to submit a template and it failed to provision, you must delete it first and then resubmit. For more information, go to https://aka.ms/azvmimagebuilderts.\"\r\n}"},{"code":"BadRequest","message":"{\r\n  \"error\": {\r\n    \"code\": \"RoleAssignmentUpdateNotPermitted\",\r\n    \"message\": \"Tenant ID, application ID, principal ID, and scope are not allowed to be updated.\"\r\n  }\r\n}"}]}}
-```
+> `{"status":"Failed","error":{"code":"DeploymentFailed","message":"At least one resource deployment operation failed. Please list deployment operations for details. Please see https://aka.ms/DeployOperations for usage details.","details":[{"code":"Conflict","message":"{\r\n  \"code\": \"Conflict\",\r\n  \"message\": \"Update/Upgrade of image templates is currently not supported. Please change the name of the template you are submitting. If you have previously tried to submit a template and it failed to provision, you must delete it first and then resubmit. For more information, go to https://aka.ms/azvmimagebuilderts.\"\r\n}"},{"code":"BadRequest","message":"{\r\n  \"error\": {\r\n    \"code\": \"RoleAssignmentUpdateNotPermitted\",\r\n    \"message\": \"Tenant ID, application ID, principal ID, and scope are not allowed to be updated.\"\r\n  }\r\n}"}]}}`
 
-```
-{"status":"Failed","error":{"code":"DeploymentFailed","message":"At least one resource deployment operation failed. Please list deployment operations for details. Please see https://aka.ms/DeployOperations for usage details.","details":[{"code":"Conflict","message":"{\r\n  \"code\": \"Conflict\",\r\n  \"message\": \"Update/Upgrade of image templates is currently not supported. Please change the name of the template you are submitting. If you have previously tried to submit a template and it failed to provision, you must delete it first and then resubmit. For more information, go to https://aka.ms/azvmimagebuilderts.\"\r\n}"},{"code":"BadRequest","message":"{\r\n  \"error\": {\r\n    \"code\": \"RoleAssignmentUpdateNotPermitted\",\r\n    \"message\": \"Tenant ID, application ID, principal ID, and scope are not allowed to be updated.\"\r\n  }\r\n}"}]}}
-```
+And another one
+
+> `{"status":"Failed","error":{"code":"DeploymentFailed","message":"At least one resource deployment operation failed. Please list deployment operations for details. Please see https://aka.ms/DeployOperations for usage details.","details":[{"code":"Conflict","message":"{\r\n  \"code\": \"Conflict\",\r\n  \"message\": \"Update/Upgrade of image templates is currently not supported. Please change the name of the template you are submitting. If you have previously tried to submit a template and it failed to provision, you must delete it first and then resubmit. For more information, go to https://aka.ms/azvmimagebuilderts.\"\r\n}"},{"code":"BadRequest","message":"{\r\n  \"error\": {\r\n    \"code\": \"RoleAssignmentUpdateNotPermitted\",\r\n    \"message\": \"Tenant ID, application ID, principal ID, and scope are not allowed to be updated.\"\r\n  }\r\n}"}]}}`
 
 ### Why are the error outputs not formatted?
 
@@ -60,9 +58,8 @@ I thought about throwing the commands into a node.js file just so I can format t
 
 But this is not possible because of the nested JSON output. For example `JSON.parse()` chokes on the `message:` key because it contains more JSON as string.
 
-```
-"message": "{\r\n  \"code\": \"Conflict\",\r\n  \"message\": \"Update/Upgrade of image templates is currently not supported. Please change the name of the template you are submitting. If you have previously tried to submit a template and it failed to provision, you must delete it first and then resubmit. For more information, go to https://aka.ms/azvmimagebuilderts.\"\r\n}"
-```
+> `"message": "{\r\n  \"code\": \"Conflict\",\r\n  \"message\": \"Update/Upgrade of image templates is currently not supported. Please change the name of the template you are submitting. If you have previously tried to submit a template and it failed to provision, you must delete it first and then resubmit. For more information, go to https://aka.ms/azvmimagebuilderts.\"\r\n}"
+`
 
 After trying to grab the nested bits via regular expressions and to parse first, I gave up. 
 
