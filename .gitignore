@@ -1,2 +1,19 @@
-*.log
+# Mac OS
 .DS_Store
+
+# Configuration
+*.conf
+
+# Terraform - state and plan files
+.terraform/
+*.tfplan
+*.tfstate
+*.tfstate.*
+*.backend.hcl
+
+# Debugging
+debug.azcli
+*.log
+
+# Pulumi
+node_modules
