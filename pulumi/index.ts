@@ -4,10 +4,10 @@ import * as azure_native from "@pulumi/azure-native";
 
 // Configuration
 
-const rgName = 'pulumi-sig-v2-rg';
-const location = 'northeurope';
+const rgName = 'azure-sig-pulumi-rg';
+const location = 'westeurope';
 const galleryConfig = {
-    name: 'pulumi_sig_v2',
+    name: 'pulumi_sig_test',
     description: 'Testing Pulumi again'
 };
 
@@ -26,4 +26,4 @@ const sig = new azure_native.compute.Gallery("gallery", {
     resourceGroupName: rgName
 });
 
-console.log(sig);
+// console.log(sig);
