@@ -1,3 +1,44 @@
+## Example Output
+
+### Commands for Test
+
+```
+az group create -g aib-bicep-test-rg -l westeurope
+az deployment group what-if -f compare.bicep -g aib-bicep-test-rg
+az deployment group create -f compare.bicep -g aib-bicep-test-rg
+```
+
+### What-If
+
+```bash
+$ az deployment group what-if -f compare.bicep -g aib-bicep-test-rg
+Note: The result may contain false positive predictions (noise).
+You can help us improve the accuracy of the result by opening an issue here: https://aka.ms/WhatIfIssues.
+
+Resource and property changes are indicated with this symbol:
+  + Create
+
+The deployment will update the following scope:
+
+Scope: /subscriptions/6e3d4b6a-31b2-423b-a19a-31ec81472822/resourceGroups/aib-bicep-test-rg
+
+  + Microsoft.Compute/galleries/bicep_sig_just_gallery [2019-12-01]
+
+      apiVersion:             "2019-12-01"
+      id:                     "/subscriptions/6e3d4b6a-31b2-423b-a19a-31ec81472822/resourceGroups/aib-bicep-test-rg/providers/Microsoft.Compute/galleries/bicep_sig_just_gallery"
+      location:               "westeurope"
+      name:                   "bicep_sig_just_gallery"
+      properties.description: "Azure Image Builder Gallery"
+      tags.demo:              "azure-image-builder"
+      tags.iac:               "bicep"
+      type:                   "Microsoft.Compute/galleries"
+
+Resource changes: 1 to create.
+
+azure-image-builder-test/bicep dev [!?] took 21s
+```
+---
+
 # Azure Image Builder with Bicep
 
 This repo documents a _failed_ attempt to try to automate the Azure Image Builder with Infrastructure as Code (IaC) using Azure native Bicep template language.
