@@ -1,0 +1,3 @@
+name: azure-sig-pulumi
+runtime: nodejs
+description: Second attempt at creating SIG with Pulumi
