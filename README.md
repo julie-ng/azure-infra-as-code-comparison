@@ -12,3 +12,13 @@ I needed a custom VM but HashiCorp Packer says the Virtual Hard Disk (VHD) will 
 - [Pulumi](./pulumi)
 - [Terraform](./terraform)
 
+## Comparison
+
+Empty Shared Image Gallery Only
+
+| Tool | Plan/Preview | Deploy |
+|:--|:--|:--|
+| Azure Bicep | 21s | 36s |
+| Pulumi | 3m37s | ? |
+| Terraform | 17s | 15s |
+

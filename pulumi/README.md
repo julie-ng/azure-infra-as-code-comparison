@@ -28,7 +28,7 @@ npm install
 ### 3. Set default Azure Region
 
 ```bash
-pulumi config set azure-native:location eastus
+pulumi config set azure-native:location westeurope
 ```
 
 ### 4. Preview and Deploy

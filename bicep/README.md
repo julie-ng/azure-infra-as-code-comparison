@@ -20,12 +20,12 @@ Resource and property changes are indicated with this symbol:
 
 The deployment will update the following scope:
 
-Scope: /subscriptions/6e3d4b6a-31b2-423b-a19a-31ec81472822/resourceGroups/aib-bicep-test-rg
+Scope: /subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/aib-bicep-test-rg
 
   + Microsoft.Compute/galleries/bicep_sig_just_gallery [2019-12-01]
 
       apiVersion:             "2019-12-01"
-      id:                     "/subscriptions/6e3d4b6a-31b2-423b-a19a-31ec81472822/resourceGroups/aib-bicep-test-rg/providers/Microsoft.Compute/galleries/bicep_sig_just_gallery"
+      id:                     "/subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/aib-bicep-test-rg/providers/Microsoft.Compute/galleries/bicep_sig_just_gallery"
       location:               "westeurope"
       name:                   "bicep_sig_just_gallery"
       properties.description: "Azure Image Builder Gallery"
